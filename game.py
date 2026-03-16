@@ -3,7 +3,8 @@ def main_menu():
     print("1. Start New Journey")
     print("2. Load Saved Game")
     print("3. Instructions")
-    print("4. Quit")
+    print("4. Name Your Companion")
+    print("5. Quit")
     choice = input("Choose an option: ")
     return choice
 
@@ -18,9 +19,13 @@ def instructions():
 
 import random
 
+# Your loyal companion who travels with you on the trail
+companion_name = "Buddy"
+
 
 def start_new_game():
     print("Starting a new Chutes & Ladders adventure...")
+    print(f"{companion_name} is trekking by your side as you set out.")
     # simple board setup with chutes (down) and ladders (up)
     chutes_and_ladders = {
         # original 100-square board entries
@@ -43,6 +48,7 @@ def start_new_game():
         else:
             position += roll
             print(f"You move to square {position}.")
+            print(f"{companion_name} cheers you on as you move forward.")
             # special event: bridge over lava pit at 50
             if position == 50:
                 print("You've reached the rickety bridge over a bubbling lava pit!")
@@ -66,7 +72,7 @@ def start_new_game():
                     print(f"Oh no, a chute! Slide down to {new_pos}.")
                 position = new_pos
             if position == board_size:
-                print("Congratulations! You've reached the end of the trail!")
+                print(f"Congratulations! You and {companion_name} have reached the end of the trail!")
                 break
     input("Game over. Press Enter to return to the main menu...")
 
@@ -74,6 +80,16 @@ def start_new_game():
 def load_game():
     print("Loading saved game...")
     # placeholder for loading logic
+
+
+def name_companion():
+    global companion_name
+    new_name = input("What would you like to name your companion? ").strip()
+    if new_name:
+        companion_name = new_name
+        print(f"Your companion is now named {companion_name}.")
+    else:
+        print("Companion name unchanged.")
 
 
 def quit_game():
@@ -90,6 +106,8 @@ def run():
         elif choice == '3':
             instructions()
         elif choice == '4':
+            name_companion()
+        elif choice == '5':
             quit_game()
             break
         else:
